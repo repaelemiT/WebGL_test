@@ -1,0 +1,729 @@
+﻿
+{
+    "skinIndex" : 9,
+    "skinName"  : "pm_emt_isl_aj_頭のみ.psb.m_merged",
+    "exportTime" : "2026-05-05 23:22:23",
+    "totalAnimations" : 121,
+    "animations"      : [
+        {
+            "index" : 1,
+            "name"  : "-----<表情セット・基礎>--------",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 2,
+            "name"  : "表情_微笑み",
+            "isLoop" : false,
+            "totalSeconds" : 0.2
+        },
+        {
+            "index" : 3,
+            "name"  : "表情_笑顔",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 4,
+            "name"  : "表情_真剣",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 5,
+            "name"  : "表情_通常",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 6,
+            "name"  : "表情_悲しみ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 7,
+            "name"  : "表情_興奮",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 8,
+            "name"  : "表情_照れ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 9,
+            "name"  : "表情_ショック",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 10,
+            "name"  : "表情_困惑",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 11,
+            "name"  : "表情_目閉じ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 12,
+            "name"  : "表情_泣き",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 13,
+            "name"  : "表情_ドヤ顔",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 14,
+            "name"  : "表情_困り笑顔",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 15,
+            "name"  : "表情_照れ困り",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 16,
+            "name"  : "表情_頬赤",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 17,
+            "name"  : "表情_頬赤大",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 18,
+            "name"  : "表情_涙",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 19,
+            "name"  : "表情_涙大",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 20,
+            "name"  : "-----<表情セット・motionから分離>--------",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 21,
+            "name"  : "表情_納得",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 22,
+            "name"  : "表情_残念",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 23,
+            "name"  : "表情_上目不安",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 24,
+            "name"  : "表情_強気",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 25,
+            "name"  : "表情_天真爛漫",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 26,
+            "name"  : "表情_苦悩",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 27,
+            "name"  : "表情_伺う",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 28,
+            "name"  : "表情_うっとり頬染め",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 29,
+            "name"  : "表情_うっとり頬染め（涙）",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 30,
+            "name"  : "表情_びっくり",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 31,
+            "name"  : "表情_憧れ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 32,
+            "name"  : "表情_喜び頬染め大",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 33,
+            "name"  : "表情_澄まし顔",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 34,
+            "name"  : "表情_うれし泣き",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 35,
+            "name"  : "表情_ぷんぷん顔",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 36,
+            "name"  : "表情_不機嫌",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 37,
+            "name"  : "表情_悩み顔",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 38,
+            "name"  : "表情_激怒",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 39,
+            "name"  : "表情_残念目あけ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 40,
+            "name"  : "表情_感嘆",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 41,
+            "name"  : "表情_笑顔01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 42,
+            "name"  : "表情_笑顔02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 43,
+            "name"  : "表情_くわっと目あけ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 44,
+            "name"  : "表情_驚き顔",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 45,
+            "name"  : "表情_しかめっ面",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 46,
+            "name"  : "表情_照れ目閉じ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 47,
+            "name"  : "表情_照れ目あけ",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 48,
+            "name"  : "-----<表情セット・ライブラリから>--------",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 49,
+            "name"  : "表情_平常",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 50,
+            "name"  : "表情_喜ぶ00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 51,
+            "name"  : "表情_喜ぶ01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 52,
+            "name"  : "表情_喜ぶ02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 53,
+            "name"  : "表情_怒る00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 54,
+            "name"  : "表情_怒る01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 55,
+            "name"  : "表情_怒る02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 56,
+            "name"  : "表情_哀しい00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 57,
+            "name"  : "表情_哀しい01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 58,
+            "name"  : "表情_哀しい02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 59,
+            "name"  : "表情_楽しい00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 60,
+            "name"  : "表情_楽しい01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 61,
+            "name"  : "表情_楽しい02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 62,
+            "name"  : "表情_頬染め00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 63,
+            "name"  : "表情_頬染め01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 64,
+            "name"  : "表情_頬染め02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 65,
+            "name"  : "表情_驚き00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 66,
+            "name"  : "表情_驚き01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 67,
+            "name"  : "表情_驚き02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 68,
+            "name"  : "表情_頭部向き初期化",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 69,
+            "name"  : "表情_頭部右向き",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 70,
+            "name"  : "表情_頭部左向き",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 71,
+            "name"  : "表情_頭部上向き",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 72,
+            "name"  : "表情_頭部下向き",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 73,
+            "name"  : "-----<表情セット・動作込み>--------",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 74,
+            "name"  : "motion_表情初期化",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 75,
+            "name"  : "motion_頭部初期化",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 76,
+            "name"  : "motion_表情_頭部初期化",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 77,
+            "name"  : "motion_身体初期化",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 78,
+            "name"  : "motion_頭部_身体初期化",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 79,
+            "name"  : "motion_表情_頭部_身体初期化",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 80,
+            "name"  : "motion_00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 81,
+            "name"  : "motion_01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 82,
+            "name"  : "motion_02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 83,
+            "name"  : "motion_04",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 84,
+            "name"  : "motion_04うっとり",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 85,
+            "name"  : "motion_05",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 86,
+            "name"  : "motion_喜00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 87,
+            "name"  : "motion_喜01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 88,
+            "name"  : "motion_喜01目線正面",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 89,
+            "name"  : "motion_喜02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 90,
+            "name"  : "motion_喜03",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 91,
+            "name"  : "motion_喜04",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 92,
+            "name"  : "motion_怒00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 93,
+            "name"  : "motion_怒00腕力み",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 94,
+            "name"  : "motion_怒01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 95,
+            "name"  : "motion_怒02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 96,
+            "name"  : "motion_哀00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 97,
+            "name"  : "motion_哀01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 98,
+            "name"  : "motion_哀04",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 99,
+            "name"  : "motion_楽00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 100,
+            "name"  : "motion_楽01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 101,
+            "name"  : "motion_楽02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 102,
+            "name"  : "motion_楽03",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 103,
+            "name"  : "motion_楽05",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 104,
+            "name"  : "motion_驚00",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 105,
+            "name"  : "motion_驚02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 106,
+            "name"  : "motion_驚03",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 107,
+            "name"  : "-----<仕草セット・motionから分離>--------",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 108,
+            "name"  : "-----<sampleセット>--------",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 109,
+            "name"  : "sample_全自動_test",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 110,
+            "name"  : "sample_全自動_test2",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 111,
+            "name"  : "sample_03",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 112,
+            "name"  : "sample_怒03",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 113,
+            "name"  : "sample_怒04",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 114,
+            "name"  : "sample_哀02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 115,
+            "name"  : "sample_哀03",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 116,
+            "name"  : "sample_楽04",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 117,
+            "name"  : "sample_驚01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 118,
+            "name"  : "sample_複合01",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 119,
+            "name"  : "sample_複合02",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        },
+        {
+            "index" : 120,
+            "name"  : "--------------",
+            "isLoop" : false,
+            "totalSeconds" : -8.813411E-20
+        }
+    ]
+}

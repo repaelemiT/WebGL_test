@@ -1,0 +1,345 @@
+﻿
+{
+    "skinIndex" : 1,
+    "skinName"  : "pm_emt_isl_ab_頭のみ.psb.m_merged",
+    "exportTime" : "2026-05-05 23:23:51",
+    "totalAnimations" : 57,
+    "animations"      : [
+        {
+            "index" : 1,
+            "name"  : "表情_通常",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 2,
+            "name"  : "表情_微笑み",
+            "isLoop" : false,
+            "totalSeconds" : 0.2
+        },
+        {
+            "index" : 3,
+            "name"  : "表情_笑顔",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 4,
+            "name"  : "表情_真剣",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 5,
+            "name"  : "表情_悲しみ",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 6,
+            "name"  : "表情_興奮",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 7,
+            "name"  : "表情_照れ",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 8,
+            "name"  : "表情_ショック",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 9,
+            "name"  : "表情_泣き",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 10,
+            "name"  : "表情_困惑",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 11,
+            "name"  : "表情_目閉じ",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 12,
+            "name"  : "表情_ドヤ顔",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 13,
+            "name"  : "-------------------",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 14,
+            "name"  : "motion_表情初期化",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 15,
+            "name"  : "motion_頭部初期化",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 16,
+            "name"  : "motion_表情_頭部初期化",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 17,
+            "name"  : "motion_身体初期化",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 18,
+            "name"  : "motion_頭部_身体初期化",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 19,
+            "name"  : "motion_表情_頭部_身体初期化",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 20,
+            "name"  : "motion_00",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 21,
+            "name"  : "motion_01",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 22,
+            "name"  : "motion_02",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 23,
+            "name"  : "motion_04",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 24,
+            "name"  : "motion_04うっとり",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 25,
+            "name"  : "motion_05",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 26,
+            "name"  : "motion_喜00",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 27,
+            "name"  : "motion_喜01",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 28,
+            "name"  : "motion_喜02",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 29,
+            "name"  : "motion_喜03",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 30,
+            "name"  : "motion_喜04",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 31,
+            "name"  : "motion_怒00",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 32,
+            "name"  : "motion_怒01",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 33,
+            "name"  : "motion_怒02",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 34,
+            "name"  : "motion_哀00",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 35,
+            "name"  : "motion_哀01",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 36,
+            "name"  : "motion_哀04",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 37,
+            "name"  : "motion_楽00",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 38,
+            "name"  : "motion_楽01",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 39,
+            "name"  : "motion_楽02",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 40,
+            "name"  : "motion_楽03",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 41,
+            "name"  : "motion_楽05",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 42,
+            "name"  : "motion_驚00",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 43,
+            "name"  : "motion_驚02",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 44,
+            "name"  : "motion_驚03",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 45,
+            "name"  : "-------------------_",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 46,
+            "name"  : "sample_全自動_test",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 47,
+            "name"  : "sample_全自動_test2",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 48,
+            "name"  : "sample_03",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 49,
+            "name"  : "sample_怒03",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 50,
+            "name"  : "sample_怒04",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 51,
+            "name"  : "sample_哀02",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 52,
+            "name"  : "sample_哀03",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 53,
+            "name"  : "sample_楽04",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 54,
+            "name"  : "sample_驚01",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 55,
+            "name"  : "sample_複合01",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        },
+        {
+            "index" : 56,
+            "name"  : "sample_複合02",
+            "isLoop" : false,
+            "totalSeconds" : -1.15237E-19
+        }
+    ]
+}
