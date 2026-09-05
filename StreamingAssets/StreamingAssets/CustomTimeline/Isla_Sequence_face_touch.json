@@ -1,0 +1,538 @@
+{
+    "savedFrames": [
+        {
+            "frameName": "Frame 0",
+            "frameTransitionTime": 0.5,
+            "frameEasing": 0.0,
+            "variables": [
+                {
+                    "label": "move_UD",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "move_LR",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "head_UD",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "head_LR",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "head_slant",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "body_UD",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "body_LR",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "body_slant",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_UD",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_LR",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_open",
+                    "targetValue": -2.0,
+                    "maxValue": 36.0,
+                    "minValue": -10.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eyebrow",
+                    "targetValue": 40.0,
+                    "maxValue": 53.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_mouth",
+                    "targetValue": 30.0,
+                    "maxValue": 46.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_talk",
+                    "targetValue": 0.0,
+                    "maxValue": 5.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_hi",
+                    "targetValue": 0.0,
+                    "maxValue": 3.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_tears",
+                    "targetValue": 0.0,
+                    "maxValue": 2.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_cheek",
+                    "targetValue": 0.0,
+                    "maxValue": 4.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "act_sp",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "arm_type",
+                    "targetValue": 0.0,
+                    "maxValue": 4.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "ARM_R",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "ARM_L",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_v",
+                    "targetValue": 1.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_w",
+                    "targetValue": 1.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_x",
+                    "targetValue": 0.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_y",
+                    "targetValue": 0.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_z",
+                    "targetValue": 0.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                }
+            ]
+        },
+        {
+            "frameName": "Frame 1",
+            "frameTransitionTime": 0.5,
+            "frameEasing": 0.0,
+            "variables": [
+                {
+                    "label": "move_UD",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "move_LR",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "head_UD",
+                    "targetValue": 10.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "head_LR",
+                    "targetValue": -5.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "head_slant",
+                    "targetValue": 25.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "body_UD",
+                    "targetValue": 10.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "body_LR",
+                    "targetValue": -5.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "body_slant",
+                    "targetValue": 1.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_UD",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_LR",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_open",
+                    "targetValue": 10.0,
+                    "maxValue": 36.0,
+                    "minValue": -10.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eyebrow",
+                    "targetValue": 50.0,
+                    "maxValue": 53.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_mouth",
+                    "targetValue": 30.0,
+                    "maxValue": 46.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_talk",
+                    "targetValue": 0.0,
+                    "maxValue": 5.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_eye_hi",
+                    "targetValue": 0.0,
+                    "maxValue": 3.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_tears",
+                    "targetValue": 0.0,
+                    "maxValue": 2.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "face_cheek",
+                    "targetValue": 1.0,
+                    "maxValue": 4.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "act_sp",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "arm_type",
+                    "targetValue": 0.0,
+                    "maxValue": 4.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "ARM_R",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "ARM_L",
+                    "targetValue": 0.0,
+                    "maxValue": 30.0,
+                    "minValue": -30.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_v",
+                    "targetValue": 1.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_w",
+                    "targetValue": 1.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_x",
+                    "targetValue": 0.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_y",
+                    "targetValue": 0.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                },
+                {
+                    "label": "fade_z",
+                    "targetValue": 0.0,
+                    "maxValue": 1.0,
+                    "minValue": 0.0,
+                    "useCustomSettings": false,
+                    "transitionTime": 0.5,
+                    "transitionEasing": 0.0,
+                    "overridePrevious": true
+                }
+            ]
+        }
+    ]
+}
