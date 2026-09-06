@@ -1,105 +1,82 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-cn">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Isla-Roleplay</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Isla-Roleplay</title>
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #111318; overflow: hidden; }
+      #unity-container { position: relative; width: 100%; height: 100%; }
+      /* touch-action: none 防止 iOS 触摸滚动/双击缩放干扰按住说话按钮 */
+      #unity-canvas { display: block; width: 100%; height: 100%; background: #111318; touch-action: none; }
+      #unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 240px; height: 8px; background: #2a2e35; border-radius: 4px; overflow: hidden; }
+      #unity-progress-bar-full { width: 0%; height: 100%; background: #4a90d9; border-radius: 4px; transition: width .15s; }
+    </style>
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Isla-Roleplay</div>
-      </div>
+    <div id="unity-container">
+      <canvas id="unity-canvas"></canvas>
+      <div id="unity-loading-bar"><div id="unity-progress-bar-full"></div></div>
     </div>
     <script>
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var warningBanner = document.querySelector("#unity-warning");
+      // ==== 音频解锁（必须先于 Unity loader 执行）====
+      // 浏览器 autoplay policy 会把 AudioContext 冻结在 suspended，直至"手势同步栈"内
+      // 的 resume。Unity 引擎自身的 resume 走帧循环（异步），在 iOS Safari 上过不了
+      // 手势栈检查 → 首次访问整页无声（背景音乐也没有）。这里 wrap AudioContext 构造器
+      // 捕获 Unity 创建的 context，在 DOM 手势监听器（同步栈）里 resume + 启动静音
+      // buffer（iOS 严格模式的标准解锁仪式），一次性完成解锁。
+      (function () {
+        var RealCtx = window.AudioContext || window.webkitAudioContext;
+        if (!RealCtx) return;
+        var realContext = null;
+        function WrappedCtx() { realContext = new RealCtx(); return realContext; }
+        WrappedCtx.prototype = RealCtx.prototype;   // 保持 instanceof 语义
+        try {
+          window.AudioContext = WrappedCtx;
+          if (window.webkitAudioContext) window.webkitAudioContext = WrappedCtx;
+        } catch (e) { return; }
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function unityShowBanner(msg, type) {
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        var unlocked = false;
+        function unlock() {
+          if (unlocked || !realContext) return;   // context 未创建时不置位，等下一次手势
+          unlocked = true;
+          try {
+            if (realContext.state === 'suspended') realContext.resume();
+            var buf = realContext.createBuffer(1, 1, 22050);
+            var src = realContext.createBufferSource();
+            src.buffer = buf;
+            src.connect(realContext.destination);
+            src.start(0);
+          } catch (e) { /* 极端环境（浏览器禁音频等）忽略，退回引擎自身机制 */ }
         }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
+        ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'].forEach(function (name) {
+          document.addEventListener(name, unlock, { capture: true, passive: true });
+        });
+      })();
 
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WebGL_v2.loader.js";
+      // ==== Unity 启动 ====
+      var canvas = document.getElementById('unity-canvas');
+      var progressBarFull = document.getElementById('unity-progress-bar-full');
+      var loadingBar = document.getElementById('unity-loading-bar');
+
       var config = {
-        dataUrl: buildUrl + "/WebGL_v2.data.unityweb",
-        frameworkUrl: buildUrl + "/WebGL_v2.framework.js.unityweb",
-        codeUrl: buildUrl + "/WebGL_v2.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
+        dataUrl: 'Build/WebGL_v3.data.unityweb',
+        frameworkUrl: 'Build/WebGL_v3.framework.js.unityweb',
+        codeUrl: 'Build/WebGL_v3.wasm.unityweb',
+        streamingAssetsUrl: 'StreamingAssets',
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
         productVersion: "0.2",
-        showBanner: unityShowBanner,
+        showBanner: function () { /* 空实现：静音"移动端不支持"等横幅 */ },
       };
 
-      // By default Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        // Avoid draining fillrate performance on mobile devices,
-        // and default/override low DPI mode on mobile browsers.
-        config.devicePixelRatio = 1;
-        unityShowBanner('WebGL builds are not supported on mobile devices.');
-      } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-      }
-      canvas.style.background = "url('" + buildUrl + "/WebGL_v2.jpg') center / cover";
-      loadingBar.style.display = "block";
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-          loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        }).catch((message) => {
-          alert(message);
+      var script = document.createElement('script');
+      script.src = 'Build/WebGL_v3.loader.js';
+      script.onload = function () {
+        createUnityInstance(canvas, config, function (progress) {
+          progressBarFull.style.width = (progress * 100) + '%';
+        }).then(function () {
+          loadingBar.style.display = 'none';
         });
       };
       document.body.appendChild(script);
