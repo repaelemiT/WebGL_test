@@ -6,18 +6,19 @@
     <title>Isla-Roleplay</title>
     <style>
       html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #111318; overflow: hidden; }
+      body { display: flex; align-items: center; justify-content: center; }
       #unity-container { position: relative; width: 100%; height: 100%; }
       /* touch-action: none 防止 iOS 触摸滚动/双击缩放干扰按住说话按钮 */
       #unity-canvas { display: block; width: 100%; height: 100%; background: #111318; touch-action: none; }
-      #unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 240px; height: 8px; background: #2a2e35; border-radius: 4px; overflow: hidden; }
+      #unity-loading-bar { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 240px; height: 8px; background: #2a2e35; border-radius: 4px; overflow: hidden; }
       #unity-progress-bar-full { width: 0%; height: 100%; background: #4a90d9; border-radius: 4px; transition: width .15s; }
     </style>
   </head>
   <body>
     <div id="unity-container">
       <canvas id="unity-canvas"></canvas>
-      <div id="unity-loading-bar"><div id="unity-progress-bar-full"></div></div>
     </div>
+    <div id="unity-loading-bar"><div id="unity-progress-bar-full"></div></div>
     <script>
       // ==== 音频解锁（必须先于 Unity loader 执行）====
       // 浏览器 autoplay policy 会把 AudioContext 冻结在 suspended，直至"手势同步栈"内
@@ -25,6 +26,9 @@
       // 手势栈检查 → 首次访问整页无声（背景音乐也没有）。这里 wrap AudioContext 构造器
       // 捕获 Unity 创建的 context，在 DOM 手势监听器（同步栈）里 resume + 启动静音
       // buffer（iOS 严格模式的标准解锁仪式），一次性完成解锁。
+      // 注意：wrap 必须捕获 Unity 的 context 而非自建 —— 麦克风插件(bnco)的
+      // InitOrResumeContext 对"自建 ctx 挂起"会持续返回 false（getUserMedia 需要
+      // running 状态的 context），那正是"首次进入无法录音、刷新后恢复"的机制。
       (function () {
         var RealCtx = window.AudioContext || window.webkitAudioContext;
         if (!RealCtx) return;
@@ -60,18 +64,32 @@
       var loadingBar = document.getElementById('unity-loading-bar');
 
       var config = {
-        dataUrl: 'Build/WebGL_v3.data.unityweb',
-        frameworkUrl: 'Build/WebGL_v3.framework.js.unityweb',
-        codeUrl: 'Build/WebGL_v3.wasm.unityweb',
+        dataUrl: 'Build/WebGL_v4.data.unityweb',
+        frameworkUrl: 'Build/WebGL_v4.framework.js.unityweb',
+        codeUrl: 'Build/WebGL_v4.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
-        productVersion: "0.2",
+        productVersion: "0.3",
         showBanner: function () { /* 空实现：静音"移动端不支持"等横幅 */ },
       };
 
+      // 与官方 Default 模板一致的性能护栏（v2.3 补上，此前缺失导致移动/桌面卡顿加剧）：
+      // - 移动端 UA：devicePixelRatio = 1，按物理像素渲染（高 DPR 全分辨率输出会拖垮帧率）；
+      // - 桌面：画布锁定为 Player Settings 的固定分辨率并居中。
+      //   此前模板用 CSS 撑满全窗口 + matchWebGLToCanvasSize（默认开启）→ 渲染目标被
+      //   抬到全窗口尺寸×DPR（如 2560×1440@1.5x ≈ 550 万像素，是 960×600 的 ~10 倍），
+      //   帧率骤降正是从这里来的。
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        config.devicePixelRatio = 1;
+      } else {
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
+
       var script = document.createElement('script');
-      script.src = 'Build/WebGL_v3.loader.js';
+      script.src = 'Build/WebGL_v4.loader.js';
       script.onload = function () {
         createUnityInstance(canvas, config, function (progress) {
           progressBarFull.style.width = (progress * 100) + '%';
