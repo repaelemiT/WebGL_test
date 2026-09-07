@@ -64,9 +64,9 @@
       var loadingBar = document.getElementById('unity-loading-bar');
 
       var config = {
-        dataUrl: 'Build/WebGL_v10.data.unityweb',
-        frameworkUrl: 'Build/WebGL_v10.framework.js.unityweb',
-        codeUrl: 'Build/WebGL_v10.wasm.unityweb',
+        dataUrl: 'Build/WebGL_v11.data.unityweb',
+        frameworkUrl: 'Build/WebGL_v11.framework.js.unityweb',
+        codeUrl: 'Build/WebGL_v11.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
@@ -89,7 +89,7 @@
       }
 
       var script = document.createElement('script');
-      script.src = 'Build/WebGL_v10.loader.js';
+      script.src = 'Build/WebGL_v11.loader.js';
       script.onload = function () {
         createUnityInstance(canvas, config, function (progress) {
           progressBarFull.style.width = (progress * 100) + '%';
