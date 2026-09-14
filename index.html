@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 注意：刻意不加 viewport meta（官方 Default 也没有）。
+         加了 width=device-width 后，手机 layout viewport 从默认 980px 缩到设备实际宽度
+         （约 390px），叠加 devicePixelRatio=1，渲染 buffer 从 980×~2000 掉到 390×844，
+         拉伸到全屏即糊——这正是上一版"移动端分辨率下降"的根因。
+         无 viewport 时 buffer 更大、页面整体缩小显示，等于超采样，反而清晰。 -->
     <title>Isla-Roleplay</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
@@ -71,9 +75,9 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
 
       var config = {
-        dataUrl: 'Build/WebGL_v19.data.unityweb',
-        frameworkUrl: 'Build/WebGL_v19.framework.js.unityweb',
-        codeUrl: 'Build/WebGL_v19.wasm.unityweb',
+        dataUrl: 'Build/WebGL_v20.data.unityweb',
+        frameworkUrl: 'Build/WebGL_v20.framework.js.unityweb',
+        codeUrl: 'Build/WebGL_v20.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
@@ -94,10 +98,14 @@
         canvas.style.width = "960px";
         canvas.style.height = "600px";
       }
+      // 官方 Default 原生背景图机制：Player Settings 勾选 Splash Image → WebGL 后，
+      // 构建时会把背景图输出为 Build/<构建名>.jpg 并在加载期间铺在 canvas 上
+      // （center/cover）。构建产物里已有 <构建名>.jpg，说明该配置已开启，恢复此分支即生效。
+      canvas.style.background = "url('" + "Build/WebGL_v20.jpg') center / cover";
       loadingBar.style.display = "block";
 
       var script = document.createElement('script');
-      script.src = 'Build/WebGL_v19.loader.js';
+      script.src = 'Build/WebGL_v20.loader.js';
       script.onload = function () {
         createUnityInstance(canvas, config, function (progress) {
           progressBarFull.style.width = (progress * 100) + '%';
@@ -107,6 +115,9 @@
           fullscreenButton.onclick = function () {
             unityInstance.SetFullscreen(1);
           };
+        }).catch(function (message) {
+          // 加载失败要有提示（官方 Default 同款），避免用户面对黑屏无反馈
+          alert(message);
         });
       };
       document.body.appendChild(script);

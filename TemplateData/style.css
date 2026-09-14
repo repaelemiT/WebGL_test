@@ -17,8 +17,11 @@ html, body {
 }
 
 body {
-  /* Isla 深色主题（与原 Isla 模板一致），加载期间页面的底色 */
-  background-color: #111318;
+  /* Isla 深色主题（与原 Isla 模板一致），加载期间页面的底色。
+     页面背景图：把图片放到 TemplateData/background.jpg 即自动生效
+     （桌面窗口模式下 canvas 四周可见；全屏/移动端 canvas 铺满时被覆盖，属正常）。
+     图片不存在时浏览器忽略该层，仅显示底色 #111318，无副作用。 */
+  background: #111318 url('background.jpg') center / cover no-repeat;
 }
 
 /* 官方 Default 同款：container 绝对定位，由内容撑开尺寸，再平移回视口中心 */
