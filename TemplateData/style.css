@@ -1,0 +1,103 @@
+/* Isla WebGL 模板样式。
+   布局规则取自官方 Default 模板（Unity 2020.3），修复此前 Isla 自定义模板的三个症状：
+   - 场景缩在左上角：此前 container 100%×100% + flex 居中（等于没居中），
+     canvas 静态定位落在文档流左上角。官方做法是 container 绝对定位到视口中心
+     （left/top 50% + translate(-50%,-50%)），container 尺寸由 canvas 内容撑开。
+   - 分辨率低：此前 canvas 缺失 width/height 属性 → drawing buffer 初始尺寸错误。
+     canvas 的 width=960 height=600 属性已在 index.html 恢复，
+     运行期由 Unity loader 的 matchWebGLToCanvasSize 逻辑接管。
+   - 背景全黑观感：此前 canvas 缩在角落、视口其余部分是深色 body。
+     现在场景撑满预期位置，body 底色只作加载期间的兜底。 */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  /* Isla 深色主题（与原 Isla 模板一致），加载期间页面的底色 */
+  background-color: #111318;
+}
+
+/* 官方 Default 同款：container 绝对定位，由内容撑开尺寸，再平移回视口中心 */
+#unity-container {
+  position: absolute;
+}
+
+.unity-desktop {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 移动端：撑满视口（index.html 已设 devicePixelRatio=1 控制填充率） */
+.unity-mobile {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.unity-mobile #unity-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#unity-canvas {
+  background: #111318;
+  /* PTT 按住说话的手势发生在 canvas 上，禁止浏览器默认手势（页面滚动/缩放），
+     否则长按会触发选择/滚动而不是语音按钮。iOS Safari 长按兼容性必需。 */
+  touch-action: none;
+  outline: none;
+}
+
+/* 简洁版加载条（官方 Unity logo 版不引入，离 #9 MP4 加载动画更近） */
+#unity-loading-bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 10px;
+  background: #2a2e35;
+  border-radius: 5px;
+  display: none;
+}
+
+#unity-progress-bar-full {
+  width: 0%;
+  height: 100%;
+  background: #4a90d9;
+  border-radius: 5px;
+}
+
+#unity-warning { display: none; }
+
+/* footer（全屏按钮 + 标题），移动端隐藏（官方 Default 同款规则） */
+#unity-footer {
+  position: relative;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.unity-mobile #unity-footer { display: none; }
+
+#unity-fullscreen-button {
+  float: right;
+  width: 38px;
+  height: 38px;
+  background: url('fullscreen-button.png') no-repeat center;
+  cursor: pointer;
+}
+
+#unity-build-title {
+  float: right;
+  margin-right: 10px;
+  line-height: 38px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color: #8a8f99;
+}
+
+.unity-mobile #unity-warning { display: none; }

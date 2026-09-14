@@ -2,23 +2,28 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Isla-Roleplay</title>
-    <style>
-      html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #111318; overflow: hidden; }
-      body { display: flex; align-items: center; justify-content: center; }
-      #unity-container { position: relative; width: 100%; height: 100%; }
-      /* touch-action: none 防止 iOS 触摸滚动/双击缩放干扰按住说话按钮 */
-      #unity-canvas { display: block; width: 100%; height: 100%; background: #111318; touch-action: none; }
-      #unity-loading-bar { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 240px; height: 8px; background: #2a2e35; border-radius: 4px; overflow: hidden; }
-      #unity-progress-bar-full { width: 0%; height: 100%; background: #4a90d9; border-radius: 4px; transition: width .15s; }
-    </style>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <div id="unity-container">
-      <canvas id="unity-canvas"></canvas>
+    <!-- 容器结构 = 官方 Default 模板（2020.3）：桌面端 container 绝对定位居中（style.css
+         .unity-desktop 的 left/top 50% + translate），移动端撑满视口。
+         此前 Isla 模板用 flex 居中一个 100%×100% 的 container（等于没居中），
+         canvas 固定 px 后静态定位落在视口左上角——"场景在左上角、四周全黑"即此。 -->
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Isla-Roleplay</div>
+      </div>
     </div>
-    <div id="unity-loading-bar"><div id="unity-progress-bar-full"></div></div>
     <script>
       // ==== 音频解锁（必须先于 Unity loader 执行）====
       // 浏览器 autoplay policy 会把 AudioContext 冻结在 suspended，直至"手势同步栈"内
@@ -58,43 +63,50 @@
         });
       })();
 
-      // ==== Unity 启动 ====
-      var canvas = document.getElementById('unity-canvas');
-      var progressBarFull = document.getElementById('unity-progress-bar-full');
-      var loadingBar = document.getElementById('unity-loading-bar');
+      // ==== Unity 启动（官方 Default 结构，showBanner 精简）====
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
 
       var config = {
-        dataUrl: 'Build/WebGL_v18.data.unityweb',
-        frameworkUrl: 'Build/WebGL_v18.framework.js.unityweb',
-        codeUrl: 'Build/WebGL_v18.wasm.unityweb',
+        dataUrl: 'Build/WebGL_v19.data.unityweb',
+        frameworkUrl: 'Build/WebGL_v19.framework.js.unityweb',
+        codeUrl: 'Build/WebGL_v19.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
         productVersion: "0.4",
-        showBanner: function () { /* 空实现：静音"移动端不支持"等横幅 */ },
+        showBanner: function () { /* 空实现：静音"移动端不支持"等横幅（产品决策，官方 unityShowBanner 不引入） */ },
       };
 
-      // 与官方 Default 模板一致的性能护栏（v2.3 补上，此前缺失导致移动/桌面卡顿加剧）：
-      // - 移动端 UA：devicePixelRatio = 1，按物理像素渲染（高 DPR 全分辨率输出会拖垮帧率）；
-      // - 桌面：画布锁定为 Player Settings 的固定分辨率并居中。
-      //   此前模板用 CSS 撑满全窗口 + matchWebGLToCanvasSize（默认开启）→ 渲染目标被
-      //   抬到全窗口尺寸×DPR（如 2560×1440@1.5x ≈ 550 万像素，是 960×600 的 ~10 倍），
-      //   帧率骤降正是从这里来的。
+      // 与官方 Default 一致的画布策略：
+      // - 移动端 UA：devicePixelRatio = 1（官方注释：避免高 DPR 拖垮填充率），
+      //   canvas CSS 撑满视口，渲染目标 = 视口 CSS 像素（matchWebGLToCanvasSize 默认开启）；
+      // - 桌面：canvas DOM 尺寸锁定为 Player Settings 的固定分辨率（960×600），
+      //   container 由 style.css 绝对定位居中；渲染目标 = DOM 尺寸 × 设备 DPR（高清屏自然高清）。
       var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
+        container.className = "unity-mobile";
         config.devicePixelRatio = 1;
       } else {
         canvas.style.width = "960px";
         canvas.style.height = "600px";
       }
+      loadingBar.style.display = "block";
 
       var script = document.createElement('script');
-      script.src = 'Build/WebGL_v18.loader.js';
+      script.src = 'Build/WebGL_v19.loader.js';
       script.onload = function () {
         createUnityInstance(canvas, config, function (progress) {
           progressBarFull.style.width = (progress * 100) + '%';
-        }).then(function () {
+        }).then(function (unityInstance) {
           loadingBar.style.display = 'none';
+          // 全屏按钮（官方 Default 同款交互；移动端 footer 由 style.css 隐藏）
+          fullscreenButton.onclick = function () {
+            unityInstance.SetFullscreen(1);
+          };
         });
       };
       document.body.appendChild(script);
