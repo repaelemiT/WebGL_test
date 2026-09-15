@@ -75,9 +75,9 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
 
       var config = {
-        dataUrl: 'Build/WebGL_v22.data.unityweb',
-        frameworkUrl: 'Build/WebGL_v22.framework.js.unityweb',
-        codeUrl: 'Build/WebGL_v22.wasm.unityweb',
+        dataUrl: 'Build/WebGL_v23.data.unityweb',
+        frameworkUrl: 'Build/WebGL_v23.framework.js.unityweb',
+        codeUrl: 'Build/WebGL_v23.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
@@ -101,11 +101,11 @@
       // 官方 Default 原生背景图机制：Player Settings 勾选 Splash Image → WebGL 后，
       // 构建时会把背景图输出为 Build/<构建名>.jpg 并在加载期间铺在 canvas 上
       // （center/cover）。构建产物里已有 <构建名>.jpg，说明该配置已开启，恢复此分支即生效。
-      canvas.style.background = "url('" + "Build/WebGL_v22.jpg') center / cover";
+      canvas.style.background = "url('" + "Build/WebGL_v23.jpg') center / cover";
       loadingBar.style.display = "block";
 
       var script = document.createElement('script');
-      script.src = 'Build/WebGL_v22.loader.js';
+      script.src = 'Build/WebGL_v23.loader.js';
       script.onload = function () {
         createUnityInstance(canvas, config, function (progress) {
           progressBarFull.style.width = (progress * 100) + '%';
@@ -125,13 +125,33 @@
           // 注意：必须写在 unityInstance.Module 上——UnityLoader 源码中 unityInstance 是
           // { Module: Module, SetFullscreen: ... } 的包装对象，写在 unityInstance 上引擎读不到
           //（上一版即败于此：全屏 buffer 仍 2549×1593）。
-          // 本机 FULLSCREEN_DPR=1 时全屏 buffer≈1.8M px；若画质嫌软可上调至 1.25 折中。
-          var FULLSCREEN_DPR = 1;
+          // 本机 FULLSCREEN_DPR=0.85 时全屏 buffer≈1444×903（≈1.30M px/帧），与窗口
+          // 1440×900 精确一致（流畅度对齐窗口的数学解：0.85≈√(1.296M/1.804M)）；
+          // 代价是全屏画面拉伸偏软。嫌糊可上调（1=1.8M px，1.25=2.8M px）。
+          var FULLSCREEN_DPR = 0.85;
           var windowDPR = window.devicePixelRatio || 1;
           document.addEventListener('fullscreenchange', function () {
             var isFs = !!document.fullscreenElement;
             unityInstance.Module.devicePixelRatio = isFs ? FULLSCREEN_DPR : windowDPR;
             setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 0);
+            // 退出全屏时 C# 侧按 Player Settings 分辨率(960×600)直接写 buffer、绕过 DPR
+            //（实测日志：退出后 FBO=960×600 且不再恢复，窗口画质降为 dpr=1）。
+            // 引擎只在 clientWidth 变化时重算，故用 CSS 尺寸抖动 1px 强制它按当前 DPR
+            // 重算一次：-1px → 还原，各触发一次重算，终值 = clientWidth × DPR 正确收敛。
+            setTimeout(function () {
+              var w = canvas.style.getPropertyValue('width');
+              var wp = canvas.style.getPropertyPriority('width');
+              var h = canvas.style.getPropertyValue('height');
+              var hp = canvas.style.getPropertyPriority('height');
+              var bw = parseFloat(w) || canvas.clientWidth;
+              var bh = parseFloat(h) || canvas.clientHeight;
+              canvas.style.setProperty('width', (bw - 1) + 'px', 'important');
+              canvas.style.setProperty('height', (bh - 1) + 'px', 'important');
+              requestAnimationFrame(function () {
+                canvas.style.setProperty('width', w, wp);
+                canvas.style.setProperty('height', h, hp);
+              });
+            }, 80);
           });
         }).catch(function (message) {
           // 加载失败要有提示（官方 Default 同款），避免用户面对黑屏无反馈
