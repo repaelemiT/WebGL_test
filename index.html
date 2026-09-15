@@ -75,9 +75,9 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
 
       var config = {
-        dataUrl: 'Build/WebGL_v20.data.unityweb',
-        frameworkUrl: 'Build/WebGL_v20.framework.js.unityweb',
-        codeUrl: 'Build/WebGL_v20.wasm.unityweb',
+        dataUrl: 'Build/WebGL_v21.data.unityweb',
+        frameworkUrl: 'Build/WebGL_v21.framework.js.unityweb',
+        codeUrl: 'Build/WebGL_v21.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
@@ -101,11 +101,11 @@
       // 官方 Default 原生背景图机制：Player Settings 勾选 Splash Image → WebGL 后，
       // 构建时会把背景图输出为 Build/<构建名>.jpg 并在加载期间铺在 canvas 上
       // （center/cover）。构建产物里已有 <构建名>.jpg，说明该配置已开启，恢复此分支即生效。
-      canvas.style.background = "url('" + "Build/WebGL_v20.jpg') center / cover";
+      canvas.style.background = "url('" + "Build/WebGL_v21.jpg') center / cover";
       loadingBar.style.display = "block";
 
       var script = document.createElement('script');
-      script.src = 'Build/WebGL_v20.loader.js';
+      script.src = 'Build/WebGL_v21.loader.js';
       script.onload = function () {
         createUnityInstance(canvas, config, function (progress) {
           progressBarFull.style.width = (progress * 100) + '%';
@@ -115,6 +115,21 @@
           fullscreenButton.onclick = function () {
             unityInstance.SetFullscreen(1);
           };
+
+          // ==== 全屏渲染负载控制 ====
+          // 实测（F12）：窗口 buffer 1440×900（CSS 960×600 × dpr1.5，≈1.3M px/帧）流畅；
+          // 全屏 CSS 1699×1062 × dpr1.5 → buffer 2549×1593（≈4.1M px/帧），像素量 3.1 倍
+          // → 模型动作掉帧。framework.js 已确认引擎每次 resize 实时读取 Module.devicePixelRatio，
+          // 故进入全屏时把它降到 FULLSCREEN_DPR、退出还原，再手动补发一次 window resize
+          // 让引擎按新 DPR 重算 buffer（浏览器自身的 resize 可能先于 fullscreenchange，不可依赖）。
+          // 本机 FULLSCREEN_DPR=1 时全屏 buffer≈1.8M px，流畅；若全屏画质嫌软可上调至 1.25 折中。
+          var FULLSCREEN_DPR = 1;
+          var windowDPR = window.devicePixelRatio || 1;
+          document.addEventListener('fullscreenchange', function () {
+            var isFs = !!document.fullscreenElement;
+            unityInstance.devicePixelRatio = isFs ? FULLSCREEN_DPR : windowDPR;
+            setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 0);
+          });
         }).catch(function (message) {
           // 加载失败要有提示（官方 Default 同款），避免用户面对黑屏无反馈
           alert(message);
