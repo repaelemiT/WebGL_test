@@ -1,160 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en-us">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!-- 注意：刻意不加 viewport meta（官方 Default 也没有）。
-         加了 width=device-width 后，手机 layout viewport 从默认 980px 缩到设备实际宽度
-         （约 390px），叠加 devicePixelRatio=1，渲染 buffer 从 980×~2000 掉到 390×844，
-         拉伸到全屏即糊——这正是上一版"移动端分辨率下降"的根因。
-         无 viewport 时 buffer 更大、页面整体缩小显示，等于超采样，反而清晰。 -->
-    <title>Isla-Roleplay</title>
+    <title>Unity WebGL Player | Isla-Roleplay</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <!-- 容器结构 = 官方 Default 模板（2020.3）：桌面端 container 绝对定位居中（style.css
-         .unity-desktop 的 left/top 50% + translate），移动端撑满视口。
-         此前 Isla 模板用 flex 居中一个 100%×100% 的 container（等于没居中），
-         canvas 固定 px 后静态定位落在视口左上角——"场景在左上角、四周全黑"即此。 -->
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600></canvas>
       <div id="unity-loading-bar">
-        <div id="unity-progress-bar-full"></div>
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
       </div>
       <div id="unity-warning"> </div>
       <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
         <div id="unity-build-title">Isla-Roleplay</div>
       </div>
     </div>
     <script>
-      // ==== 音频解锁（必须先于 Unity loader 执行）====
-      // 浏览器 autoplay policy 会把 AudioContext 冻结在 suspended，直至"手势同步栈"内
-      // 的 resume。Unity 引擎自身的 resume 走帧循环（异步），在 iOS Safari 上过不了
-      // 手势栈检查 → 首次访问整页无声（背景音乐也没有）。这里 wrap AudioContext 构造器
-      // 捕获 Unity 创建的 context，在 DOM 手势监听器（同步栈）里 resume + 启动静音
-      // buffer（iOS 严格模式的标准解锁仪式），一次性完成解锁。
-      // 注意：wrap 必须捕获 Unity 的 context 而非自建 —— 麦克风插件(bnco)的
-      // InitOrResumeContext 对"自建 ctx 挂起"会持续返回 false（getUserMedia 需要
-      // running 状态的 context），那正是"首次进入无法录音、刷新后恢复"的机制。
-      (function () {
-        var RealCtx = window.AudioContext || window.webkitAudioContext;
-        if (!RealCtx) return;
-        var realContext = null;
-        function WrappedCtx() { realContext = new RealCtx(); return realContext; }
-        WrappedCtx.prototype = RealCtx.prototype;   // 保持 instanceof 语义
-        try {
-          window.AudioContext = WrappedCtx;
-          if (window.webkitAudioContext) window.webkitAudioContext = WrappedCtx;
-        } catch (e) { return; }
-
-        var unlocked = false;
-        function unlock() {
-          if (unlocked || !realContext) return;   // context 未创建时不置位，等下一次手势
-          unlocked = true;
-          try {
-            if (realContext.state === 'suspended') realContext.resume();
-            var buf = realContext.createBuffer(1, 1, 22050);
-            var src = realContext.createBufferSource();
-            src.buffer = buf;
-            src.connect(realContext.destination);
-            src.start(0);
-          } catch (e) { /* 极端环境（浏览器禁音频等）忽略，退回引擎自身机制 */ }
-        }
-        ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'].forEach(function (name) {
-          document.addEventListener(name, unlock, { capture: true, passive: true });
-        });
-      })();
-
-      // ==== Unity 启动（官方 Default 结构，showBanner 精简）====
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
 
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/WebGL_v23_default.loader.js";
       var config = {
-        dataUrl: 'Build/WebGL_v23.data.unityweb',
-        frameworkUrl: 'Build/WebGL_v23.framework.js.unityweb',
-        codeUrl: 'Build/WebGL_v23.wasm.unityweb',
-        streamingAssetsUrl: 'StreamingAssets',
+        dataUrl: buildUrl + "/WebGL_v23_default.data.unityweb",
+        frameworkUrl: buildUrl + "/WebGL_v23_default.framework.js.unityweb",
+        codeUrl: buildUrl + "/WebGL_v23_default.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
         companyName: "SlipperSoar Studio",
         productName: "Isla-Roleplay",
         productVersion: "0.4",
-        showBanner: function () { /* 空实现：静音"移动端不支持"等横幅（产品决策，官方 unityShowBanner 不引入） */ },
+        showBanner: unityShowBanner,
       };
 
-      // 与官方 Default 一致的画布策略：
-      // - 移动端 UA：devicePixelRatio = 1（官方注释：避免高 DPR 拖垮填充率），
-      //   canvas CSS 撑满视口，渲染目标 = 视口 CSS 像素（matchWebGLToCanvasSize 默认开启）；
-      // - 桌面：canvas DOM 尺寸锁定为 Player Settings 的固定分辨率（960×600），
-      //   container 由 style.css 绝对定位居中；渲染目标 = DOM 尺寸 × 设备 DPR（高清屏自然高清）。
-      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (isMobile) {
+      // By default Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
+        // Avoid draining fillrate performance on mobile devices,
+        // and default/override low DPI mode on mobile browsers.
         config.devicePixelRatio = 1;
+        unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
         canvas.style.width = "960px";
         canvas.style.height = "600px";
       }
-      // 官方 Default 原生背景图机制：Player Settings 勾选 Splash Image → WebGL 后，
-      // 构建时会把背景图输出为 Build/<构建名>.jpg 并在加载期间铺在 canvas 上
-      // （center/cover）。构建产物里已有 <构建名>.jpg，说明该配置已开启，恢复此分支即生效。
-      canvas.style.background = "url('" + "Build/WebGL_v23.jpg') center / cover";
+      canvas.style.background = "url('" + buildUrl + "/WebGL_v23_default.jpg') center / cover";
       loadingBar.style.display = "block";
 
-      var script = document.createElement('script');
-      script.src = 'Build/WebGL_v23.loader.js';
-      script.onload = function () {
-        createUnityInstance(canvas, config, function (progress) {
-          progressBarFull.style.width = (progress * 100) + '%';
-        }).then(function (unityInstance) {
-          loadingBar.style.display = 'none';
-          // 全屏按钮（官方 Default 同款交互；移动端 footer 由 style.css 隐藏）
-          fullscreenButton.onclick = function () {
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
-
-          // ==== 全屏渲染负载控制 ====
-          // 实测（F12）：窗口 buffer 1440×900（CSS 960×600 × dpr1.5，≈1.3M px/帧）流畅；
-          // 全屏 CSS 1699×1062 × dpr1.5 → buffer 2549×1593（≈4.1M px/帧），像素量 3.1 倍
-          // → 模型动作掉帧。framework.js 已确认引擎每次 resize 实时读取 Module.devicePixelRatio，
-          // 故进入全屏时把它降到 FULLSCREEN_DPR、退出还原；浏览器全屏切换本身会 fire window
-          // resize，引擎据此按新 DPR 重算 buffer（手动 dispatch 仅作时序保险）。
-          // 注意：必须写在 unityInstance.Module 上——UnityLoader 源码中 unityInstance 是
-          // { Module: Module, SetFullscreen: ... } 的包装对象，写在 unityInstance 上引擎读不到
-          //（上一版即败于此：全屏 buffer 仍 2549×1593）。
-          // 本机 FULLSCREEN_DPR=0.85 时全屏 buffer≈1444×903（≈1.30M px/帧），与窗口
-          // 1440×900 精确一致（流畅度对齐窗口的数学解：0.85≈√(1.296M/1.804M)）；
-          // 代价是全屏画面拉伸偏软。嫌糊可上调（1=1.8M px，1.25=2.8M px）。
-          var FULLSCREEN_DPR = 0.85;
-          var windowDPR = window.devicePixelRatio || 1;
-          document.addEventListener('fullscreenchange', function () {
-            var isFs = !!document.fullscreenElement;
-            unityInstance.Module.devicePixelRatio = isFs ? FULLSCREEN_DPR : windowDPR;
-            setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 0);
-            // 退出全屏时 C# 侧按 Player Settings 分辨率(960×600)直接写 buffer、绕过 DPR
-            //（实测日志：退出后 FBO=960×600 且不再恢复，窗口画质降为 dpr=1）。
-            // 引擎只在 clientWidth 变化时重算，故用 CSS 尺寸抖动 1px 强制它按当前 DPR
-            // 重算一次：-1px → 还原，各触发一次重算，终值 = clientWidth × DPR 正确收敛。
-            setTimeout(function () {
-              var w = canvas.style.getPropertyValue('width');
-              var wp = canvas.style.getPropertyPriority('width');
-              var h = canvas.style.getPropertyValue('height');
-              var hp = canvas.style.getPropertyPriority('height');
-              var bw = parseFloat(w) || canvas.clientWidth;
-              var bh = parseFloat(h) || canvas.clientHeight;
-              canvas.style.setProperty('width', (bw - 1) + 'px', 'important');
-              canvas.style.setProperty('height', (bh - 1) + 'px', 'important');
-              requestAnimationFrame(function () {
-                canvas.style.setProperty('width', w, wp);
-                canvas.style.setProperty('height', h, hp);
-              });
-            }, 80);
-          });
-        }).catch(function (message) {
-          // 加载失败要有提示（官方 Default 同款），避免用户面对黑屏无反馈
+        }).catch((message) => {
           alert(message);
         });
       };
