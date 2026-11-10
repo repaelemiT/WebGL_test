@@ -1,1 +1,0 @@
-# WebGL GitHub page hosting
